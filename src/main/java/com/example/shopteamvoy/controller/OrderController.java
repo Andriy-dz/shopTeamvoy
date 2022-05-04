@@ -45,10 +45,15 @@ public class OrderController {
         service.delete(id);
     }
 
-    @PutMapping
+    @PostMapping("/cheapest")
     public OrderResponse cheapestProduct(@RequestBody OrderRequest dto,
                                          @RequestParam String name) {
         dto.setProductId(productService.getCheapest(name).getId());
         return mapper.mapToDto(service.add(mapper.mapToModel(dto)));
+    }
+
+    @PutMapping("/confirm/{id}")
+    public OrderResponse confirm(@PathVariable Long id) {
+        return mapper.mapToDto(service.confirm(id));
     }
 }
