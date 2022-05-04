@@ -14,7 +14,7 @@ public class AppConfig {
         this.orderService = orderService;
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 */10 * * * *")
     public void orderControl() {
         orderService.deleteOverdue();
     }
